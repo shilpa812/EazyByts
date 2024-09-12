@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+   *{
+  box-sizing:border-box;
+   margin: 0;
+   padding:0;
+   }
+   
+   body{
+   height:100%;
+   }
+   header{
+   background-color: #333;
+   color:pink;
+   text-align: centre;
+   padding: 10px;
+   justify-content: center;
+   }
+   main{
+   height: 80vh;
+     background-color: lightyellow;
+   
+   }
+   
+   
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li>Customer Supports</li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+ <h1>Customer Support</h1><br><br>
+    <table border="1">
+      <tr>
+        <th>Customer Name</th>
+        <th>Issue</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+        <th>Actions</th>
+      </tr>
+      <tr th:each="customerSupport : ${customerSupports}">
+        <td th:text="${customerSupport.customerName}">Customer Name</td>
+        <td th:text="${customerSupport.issue}">Issue</td>
+        <td th:text="${customerSupport.status}">Status</td>
+        <td th:text="${customerSupport.createdAt}">Created At</td>
+        <td th:text="${customerSupport.updatedAt}">Updated At</td>
+        <td>
+          <a th:href="@{/customer-supports/{id}/edit(id=${customerSupport.id})}">Edit</a>
+          <a th:href="@{/customer-supports/{id}/delete(id=${customerSupport.id})}">Delete</a>
+        </td>
+      </tr>
+    </table><br><br>
+    <button><a th:href="@{/customer-supports/create}">Create New Customer Support</a></button>
+  </main>
+</body>
+</html>
+        
